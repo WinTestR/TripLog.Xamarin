@@ -8,7 +8,17 @@ namespace TripLog
     {
         public TripLogPage()
         {
-            Title = "TripLog";
+			Title = "TripLog";
+
+			var newButton = new ToolbarItem
+			{
+				Text = "New"
+			};
+			newButton.Clicked += (sender, e) => { 
+				Navigation.PushAsync(new NewEntryPage());
+			};
+
+			ToolbarItems.Add(newButton);
 
             var items = new List<TripLogEntry>
             {
@@ -50,6 +60,12 @@ namespace TripLog
                 ItemsSource = items,
                 ItemTemplate = itemTemplate
             };
+
+			listViewEntries.ItemTapped += async (sender, e) =>
+			{
+				var item = (TripLogEntry)e.Item;
+				await Navigation.PushAsync(new DetailPage(item));
+			};
 
             Content = listViewEntries;
         }
