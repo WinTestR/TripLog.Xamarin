@@ -51,6 +51,8 @@
     <Compile Include="ViewModels\NewEntryViewModel.cs" />
     <Compile Include="Services\INavService.cs" />
     <Compile Include="Services\XamarinFormsNavService.cs" />
+    <Compile Include="Models\GeoCoords.cs" />
+    <Compile Include="Services\ILocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
