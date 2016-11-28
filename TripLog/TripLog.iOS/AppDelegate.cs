@@ -24,7 +24,7 @@ namespace TripLog.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 			Xamarin.FormsMaps.Init(); //initialize Maps , do the same for other platforms
-            LoadApplication(new App());
+			LoadApplication(new App(new TripLogPlatformModule()));
 
             return base.FinishedLaunching(app, options);
         }

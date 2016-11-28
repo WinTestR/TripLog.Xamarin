@@ -19,7 +19,7 @@ namespace TripLog.Views
 
         public TripLogPage()
         {
-			BindingContext = new TripLogViewModel(DependencyService.Get<INavService>());
+			//going Ninject - BindingContext = new TripLogViewModel(DependencyService.Get<INavService>());
 			Title = "TripLog";
 
 			var newButton = new ToolbarItem

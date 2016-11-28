@@ -8,7 +8,6 @@ using TripLog.Services;
 using TripLog.ViewModels;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(XamarinFormsNavService))] //register the service so it can be DI resolved
 namespace TripLog.Services
 {
 	public class XamarinFormsNavService : INavService
@@ -20,10 +19,6 @@ namespace TripLog.Services
 		/// Page to ViewModel mapping
 		/// </summary>
 		private readonly IDictionary<Type, Type> _map = new Dictionary<Type, Type>();
-
-		public XamarinFormsNavService()
-		{
-		}
 
 		public void RegisterViewMapping(Type viewModel, Type view)
 		{
@@ -106,6 +101,8 @@ namespace TripLog.Services
 				throw new ArgumentException($"No view found in View Mapping for '{nameof(viewModelType)}'");
 			var constructor = viewType.GetTypeInfo().DeclaredConstructors.FirstOrDefault(dc => dc.GetParameters().Count() <= 0);
 			var view = constructor.Invoke(null) as Page;
+			var vm = ((App)Application.Current).Kernel.GetService(viewModelType);
+			view.BindingContext = vm;
 			await NavigationInstance.PushAsync(view, animated: true);
 		}
 	}
