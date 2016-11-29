@@ -1,4 +1,5 @@
 ﻿using System;
+using TripLog.Converters;
 using TripLog.Services;
 using TripLog.ViewModels;
 using Xamarin.Forms;
@@ -51,8 +52,8 @@ namespace TripLog.Views
 			var date = new Label { HorizontalOptions = LayoutOptions.Center };
 			date.SetBinding(Label.TextProperty, "Entry.Date", stringFormat: "{0:M}");
 
-			var rating = new Label { HorizontalOptions = LayoutOptions.Center };
-			rating.SetBinding(Label.TextProperty, "Entry.Rating", stringFormat: "{0} star rating");
+			var rating = new Image { HorizontalOptions = LayoutOptions.Center };
+			rating.SetBinding(Image.SourceProperty, "Entry.Rating", converter: new RatingToStarImageNameConverter());
 
 			var notes = new Label { HorizontalOptions = LayoutOptions.Center };
 			notes.SetBinding(Label.TextProperty, "Entry.Notes");

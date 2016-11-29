@@ -62,6 +62,10 @@ namespace TripLog.ViewModels
 		{
 			LogEntries.Clear();
 
+			IsBusy = true;
+			//to simulate delay - remove
+			await Task.Delay(TimeSpan.FromSeconds(3));
+
 			await Task.Run(() =>
 			{
 				LogEntries.Add(
@@ -95,6 +99,8 @@ namespace TripLog.ViewModels
 						Longitude = -122.4798
 					});
 			});
+
+			IsBusy = false;
 		}
 	}
 }
